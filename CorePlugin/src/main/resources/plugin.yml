@@ -1,0 +1,23 @@
+name: Core
+version: '${project.version}'
+main: core.main.core.Core
+api-version: 1.19
+authors: [ Dodanu ]
+description: core plugin for the CoreNetwork
+commands:
+  msg:
+  reply:
+  report:
+  broadcast:
+  clearchat:
+  togglechat:
+  fly:
+  freeze:
+  invsee:
+  vanish:
+  warp:
+  ban:
+  mute:
+  tban:
+  warn:
+  rank:
