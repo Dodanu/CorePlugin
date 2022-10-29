@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -40,19 +41,6 @@ public class FreezeListener implements Listener {
             e.setCancelled(true);
             sendFreezeMessage(p);
 
-            String staffFinalMessage = AlertsPrefix + ChatColor.WHITE + p.getName() + ChatColor.AQUA + "has been forzen by ";
-
-            for(Player staff : Bukkit.getOnlinePlayers()) {
-
-                Profile sProfile = profiles.get(staff.getUniqueId());
-
-                if (sProfile.getRank().getStaffRank() == true){
-
-                    staff.sendMessage(staffFinalMessage);
-                }
-
-            }
-
         }
 
     }
@@ -68,22 +56,29 @@ public class FreezeListener implements Listener {
             e.setCancelled(true);
             sendFreezeMessage(p);
 
-            String staffFinalMessage = AlertsPrefix + ChatColor.WHITE + p.getName() + ChatColor.AQUA + " is frozen at location " + p.getLocation();
+        }
 
-            for(Player staff : Bukkit.getOnlinePlayers()) {
+    }
 
-                Profile sProfile = profiles.get(staff.getUniqueId());
 
-                if (sProfile.getRank().getStaffRank() == true){
+    @EventHandler
+    public void onPlayerHit(EntityDamageByEntityEvent e) {
 
-                    staff.sendMessage(staffFinalMessage);
-                }
+        if(e.getDamager() instanceof Player) {
+
+            Player p = (Player) e.getDamager();
+            Profile pProfile = profiles.get(p.getUniqueId());
+
+            if(pProfile.getPlayerState().equals(Profile.PlayStates.Frozen)) {
+
+                e.setCancelled(true);
 
             }
 
         }
 
     }
+
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
 

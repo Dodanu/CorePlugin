@@ -21,3 +21,8 @@ commands:
   tban:
   warn:
   rank:
+  heal:
+  kill:
+  sm:
+  clearInv:
+  setInv:

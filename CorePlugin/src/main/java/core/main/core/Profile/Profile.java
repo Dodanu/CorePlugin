@@ -71,7 +71,7 @@ public class Profile {
     public void setPlayerState(PlayStates playstate) { this.playerState = playstate; }
 
     public enum PlayStates {
-        Normal, Frozen;
+        Normal, Frozen, Staff;
     }
 
 }

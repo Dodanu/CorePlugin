@@ -5,6 +5,7 @@ import core.main.core.CommandsBasic.message;
 import core.main.core.CommandsBasic.reply;
 import core.main.core.CommandsBasic.report;
 import core.main.core.CommandsStaff.*;
+import core.main.core.CommandsStaff.StaffModeEvents.InteractEvents;
 import core.main.core.Profile.Profile;
 import core.main.core.Punishments.ban;
 import core.main.core.Punishments.mute;
@@ -14,6 +15,7 @@ import core.main.core.Rank.Rank;
 import core.main.core.Rank.RankCommands;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,6 +46,8 @@ public final class Core extends JavaPlugin {
 
     public static String StaffJoin = ChatColor.BLUE + " has joined the server";
 
+    public static Plugin instance;
+
     @Override
     public void onEnable() {
 
@@ -62,7 +66,10 @@ public final class Core extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
         this.saveProfiles();
+        instance = null;
+
     }
 
     public void registerCommands() {
@@ -83,7 +90,11 @@ public final class Core extends JavaPlugin {
         getCommand("tban").setExecutor(new tban());
         getCommand("warn").setExecutor(new warn());
         getCommand("rank").setExecutor(new RankCommands());
-
+        getCommand("sm").setExecutor(new StaffMode());
+        getCommand("clearInv").setExecutor(new ClearInv());
+        getCommand("setInv").setExecutor(new setInv());
+        getCommand("heal").setExecutor(new Heal());
+        getCommand("kill").setExecutor(new Kill());
 
     }
 
@@ -93,6 +104,7 @@ public final class Core extends JavaPlugin {
         pm.registerEvents(new ChatHandler(), this);
         pm.registerEvents(new PlayerJoin(), this);
         pm.registerEvents(new FreezeListener(), this);
+        pm.registerEvents(new InteractEvents(), this);
 
     }
 

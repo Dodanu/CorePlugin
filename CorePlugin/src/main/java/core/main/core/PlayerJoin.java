@@ -71,12 +71,12 @@ public class PlayerJoin implements Listener {
 
         String msg1 = ChatColor.RED + "Welcome to the " + ChatColor.WHITE + "CoreNetwork" + ChatColor.RED + "!";
         String discord = "" + ChatColor.LIGHT_PURPLE + ChatColor.UNDERLINE + "https://discord.gg/YkjmNKzrgJ";
-        String strike = Striketrough("Welcome to the CoreNetwork!                    ");
+        String strike = "                                       ";
 
-        p.sendMessage(ChatColor.STRIKETHROUGH + strike);
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&n&7" + strike));
         p.sendMessage(msg1);
         p.sendMessage(discord);
-        p.sendMessage(ChatColor.STRIKETHROUGH + strike);
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&n&7" + strike));
 
         if(profile.getRank().getStaffRank() == true){
             for(Player plr : Bukkit.getOnlinePlayers()){

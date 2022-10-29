@@ -47,12 +47,22 @@ public class RankCommands implements CommandExecutor {
 
                         }
 
-                        String name = ChatColor.translateAlternateColorCodes('&',ChatColor.DARK_GRAY + "(" + rank.getDisplayName() + ChatColor.DARK_GRAY + ")" + rank.getColor() + target.getName() + ChatColor.WHITE + ": ");
-                        tprofile.setDisplayName(name);
-                        profiles.put(target.getUniqueId(), tprofile);
+                        if(rank!=null) {
 
-                        p.sendMessage(CorePrefix + ChatColor.GREEN + "You have promoted " + ChatColor.WHITE + p.getName() + ChatColor.GREEN + " to " + rank.getColor() + rank.getName());
-                        target.sendMessage(CorePrefix + ChatColor.GREEN + "You have been promoted to " + rank.getColor() + rank.getName());
+                            String name = ChatColor.translateAlternateColorCodes('&',ChatColor.DARK_GRAY + "(" + rank.getDisplayName() + ChatColor.DARK_GRAY + ")" + rank.getColor() + target.getName() + ChatColor.WHITE + ": ");
+                            tprofile.setDisplayName(name);
+                            profiles.put(target.getUniqueId(), tprofile);
+
+                            p.sendMessage(CorePrefix + ChatColor.GREEN + "You have promoted " + ChatColor.WHITE + p.getName() + ChatColor.GREEN + " to " + rank.getColor() + rank.getName());
+                            target.sendMessage(CorePrefix + ChatColor.GREEN + "You have been promoted to " + rank.getColor() + rank.getName());
+
+                        }
+                        else {
+
+                            p.sendMessage(CorePrefix + ChatColor.RED + "That rank does not exist!");
+
+                        }
+
                     }
 
                 }
